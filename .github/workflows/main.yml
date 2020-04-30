@@ -7,8 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - run: yarn
-    - env:
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+        registry-url: https://registry.npmjs.org
+    - run: yarn install
+    - name: Generate
+      env:
         BASE_URL: 'https://feryardiant.id/nuxt-appendchild/'
       run: yarn generate
     - name: Deploy
