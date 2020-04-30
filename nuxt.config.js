@@ -1,3 +1,6 @@
+import Mode from 'frontmatter-markdown-loader/mode'
+import glob from 'glob'
+import path from 'path'
 
 export default {
   mode: 'universal',
@@ -42,14 +45,41 @@ export default {
   modules: [
     '@nuxtjs/pwa',
   ],
+
+  generate: {
+    routes: () => {
+      const paths = {
+        '/': '*.md'
+      }
+
+      return [].concat(
+        ...Object.keys(paths).map((urlPath) => {
+          const filePathGlob = paths[urlPath]
+
+          return glob
+            .sync(filePathGlob, { cwd: 'entries' })
+            .map((filePath) => `${urlPath}${path.basename(filePath, '.md')}`)
+        })
+      )
+    }
+  },
   /*
   ** Build configuration
   */
   build: {
+    extractCSS: true,
     /*
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+      config.module.rules.push({
+        test: /\.md$/,
+        // include: path.resolve(__dirname, 'entries'),
+        loader: 'frontmatter-markdown-loader',
+        options: {
+          mode: [Mode.VUE_COMPONENT, Mode.META]
+        }
+      })
     }
   }
 }
