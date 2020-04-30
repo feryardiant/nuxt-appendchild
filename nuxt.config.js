@@ -49,7 +49,8 @@ export default {
   generate: {
     routes: () => {
       const paths = {
-        '/': '*.md'
+        '/': '*.md',
+        '/posts/': 'posts/*.md'
       }
 
       return [].concat(
