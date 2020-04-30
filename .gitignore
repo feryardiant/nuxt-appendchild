@@ -3,6 +3,7 @@
 # Logs
 /logs
 *.log
+*.cache
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -88,3 +89,6 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# Firebase Service Account file
+serviceAccount.json
