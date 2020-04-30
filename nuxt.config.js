@@ -48,6 +48,7 @@ export default {
 
   generate: {
     fallback: true,
+    subFolders: false,
     routes: () => {
       const paths = {
         '/': '*.md',
