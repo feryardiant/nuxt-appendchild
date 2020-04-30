@@ -14,7 +14,7 @@ jobs:
     - run: yarn install
     - name: Generate
       env:
-        BASE_URL: 'https://feryardiant.id/nuxt-appendchild/'
+        BASE_URL: 'https://nuxt5800.feryardiant.id/'
       run: yarn generate
     - name: Deploy
       if: github.event_name == 'push'
